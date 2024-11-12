@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta</title>
+    <style>
+        .tarjeta {
+            width: 600px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid pink;
+            border-radius: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff5f5;
+        }
+
+        .botones {
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 15px 30px;
+            margin: 0 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #btnSi {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        #btnNo {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        .mensaje-exito {
+            display: none;
+            color: #ff69b4;
+            margin-top: 40px;
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tarjeta">
+        <h2>¿Quieres ser mi novia?</h2>
+        <div class="botones">
+            <button id="btnSi">Sí</button>
+            <button id="btnNo">No</button>
+        </div>
+        <p id="mensajeExito" class="mensaje-exito">¡Sabía que querías ser mi novia! ❤️</p>
+    </div>
+
+    <script>
+        const btnNo = document.getElementById('btnNo');
+        const btnSi = document.getElementById('btnSi');
+        const mensajeExito = document.getElementById('mensajeExito');
+        const tarjeta = document.querySelector('.tarjeta');
+
+        btnNo.addEventListener('mouseover', () => {
+            const randomX = Math.random() * (tarjeta.offsetWidth - btnNo.offsetWidth);
+            const randomY = Math.random() * (tarjeta.offsetHeight - btnNo.offsetHeight);
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        });
+
+        btnSi.addEventListener('click', () => {
+            mensajeExito.style.display = 'block';
+            btnNo.style.display = 'none';
+            btnSi.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
