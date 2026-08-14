@@ -1,0 +1,14 @@
+$kind: collection
+name: POS API
+description: |-
+  Colección de aprendizaje para la API del POS (Proyecto Formativo).
+  Todos los endpoints usan la variable {{baseUrl}}, que apunta a tu servidor local.
+
+  IMPORTANTE sobre autenticación: la API usa sesión de PHP (checkLogin()).
+  Primero envía la petición "Login" para iniciar sesión; Postman guardará
+  la cookie de sesión automáticamente y las demás peticiones la reutilizarán.
+variables:
+  - key: baseUrl
+    value: 'http://localhost/Tienda'
+  - key: barcode
+    value: '7501234567890'

@@ -1,0 +1,14 @@
+$kind: http-request
+name: '1. Login (inicia sesión primero)'
+method: POST
+url: '{{baseUrl}}/login.php'
+order: 1000
+body:
+  type: urlencoded
+  content:
+    - key: usuario
+      value: '{{usuario}}'
+    - key: password
+      value: '{{password}}'
+    - key: login
+      value: '1'

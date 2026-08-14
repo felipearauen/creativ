@@ -1,0 +1,9 @@
+$kind: http-request
+name: '3. Get Product By Barcode'
+method: GET
+url: '{{baseUrl}}/api/get_product_by_barcode.php?barcode={{barcode}}'
+order: 3000
+queryParams:
+  - key: barcode
+    value: '{{barcode}}'
+    description: Código de barras del producto a buscar.
