@@ -16,6 +16,7 @@ $totalPaginas = 0;
 $pagina = 1;
 $busqueda = '';
 $categoriaFiltro = '';
+$totalBajoMinimo = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     try {
@@ -106,6 +107,9 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     $productos = $stmt->fetchAll();
+
+    $stmt = $pdo->query('SELECT COUNT(*) FROM productos WHERE stock <= stock_minimo');
+    $totalBajoMinimo = (int) $stmt->fetchColumn();
 } catch (PDOException $e) {
     $error = 'Error de base de datos: ' . $e->getMessage();
 }

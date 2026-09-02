@@ -7,6 +7,14 @@
         <div class="alert alert-danger animate-fade-in"><?php echo e($error); ?></div>
     <?php endif; ?>
 
+    <?php if ($totalBajoMinimo > 0): ?>
+        <div class="alert alert-warning animate-fade-in" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Hay <strong><?php echo (int) $totalBajoMinimo; ?></strong> producto(s) con stock en o por debajo del mínimo.
+            Las filas aparecen destacadas; el umbral se edita en cada producto.
+        </div>
+    <?php endif; ?>
+
     <div class="card animate-fade-in">
         <div class="card-body">
             <form method="GET" class="row g-3">
@@ -52,7 +60,8 @@
             </thead>
             <tbody>
                 <?php foreach ($productos as $producto): ?>
-                    <tr class="producto-row animate-fade-in">
+                    <?php $bajoMinimo = stockBajoMinimo($producto['stock'], $producto['stock_minimo']); ?>
+                    <tr class="producto-row animate-fade-in<?php echo $bajoMinimo ? ' table-warning producto-bajo-minimo' : ''; ?>">
                         <td><?php echo e($producto['codigo']); ?></td>
                         <td><?php echo e($producto['codigo_barras']); ?></td>
                         <td><?php echo e($producto['nombre']); ?></td>
@@ -63,9 +72,14 @@
                             </span>
                         </td>
                         <td>
-                            <span class="badge bg-<?php echo $producto['stock'] <= $producto['stock_minimo'] ? 'danger' : 'success'; ?>">
-                                <?php echo e($producto['stock']); ?>
-                            </span>
+                            <?php if ($bajoMinimo): ?>
+                                <span class="badge bg-danger">
+                                    <?php echo e($producto['stock']); ?> / mín. <?php echo e($producto['stock_minimo']); ?>
+                                </span>
+                                <span class="badge bg-warning text-dark ms-1">Bajo mínimo</span>
+                            <?php else: ?>
+                                <span class="badge bg-success"><?php echo e($producto['stock']); ?></span>
+                            <?php endif; ?>
                         </td>
                         <td>$<?php echo formatMoney($producto['precio_compra']); ?></td>
                         <td>$<?php echo formatMoney($producto['precio_venta']); ?></td>

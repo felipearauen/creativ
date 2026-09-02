@@ -33,6 +33,14 @@
     margin-bottom: 1rem;
 }
 
+#alerta-stock-minimo {
+    font-size: 0.95rem;
+}
+
+.product-item.border-warning {
+    border-width: 2px;
+}
+
 .cart-total {
     font-size: 1.5rem;
     font-weight: bold;

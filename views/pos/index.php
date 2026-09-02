@@ -18,6 +18,7 @@
     <?php else: ?>
         <div class="pos-container">
             <div class="product-section">
+                <div id="alerta-stock-minimo" class="alert alert-warning d-none" role="alert"></div>
                 <div class="search-container">
                     <div class="input-group mb-3">
                         <input type="text" id="producto-busqueda" class="form-control" placeholder="Escanear código de barras o buscar producto...">
