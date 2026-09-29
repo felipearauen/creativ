@@ -34,3 +34,13 @@ body {
 .producto-row:hover {
     background-color: #f8f9fa;
 }
+
+.table-hover tbody tr.producto-bajo-minimo > * {
+    background-color: #fff3cd;
+    box-shadow: inset 0 0 0 9999px #fff3cd;
+}
+
+.table-hover tbody tr.producto-bajo-minimo:hover > * {
+    background-color: #ffe69c;
+    box-shadow: inset 0 0 0 9999px #ffe69c;
+}

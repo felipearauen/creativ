@@ -1,0 +1,43 @@
+$kind: http-request
+name: '2. Get Products (con tests de ejemplo)'
+method: GET
+url: '{{baseUrl}}/api/get_products.php?search='
+order: 2000
+queryParams:
+  - key: search
+    value: ''
+    description: 'Texto a buscar por nombre, código o código de barras. Vacío = todos.'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      // ===== TESTS DE EJEMPLO =====
+      // Postman ejecuta este código después de recibir la respuesta.
+      // Cada pm.test(...) aparece en verde (pasó) o rojo (falló)
+      // en la pestaña "Test Results" de la respuesta.
+
+      // 1) Verifica que la API respondió con éxito (código 200)
+      pm.test('El status es 200 OK', function () {
+          pm.response.to.have.status(200);
+      });
+
+      // 2) Verifica que la respuesta llegó rápido
+      pm.test('Respondió en menos de 1 segundo', function () {
+          pm.expect(pm.response.responseTime).to.be.below(1000);
+      });
+
+      // 3) Verifica que la respuesta es una lista (array) de productos
+      pm.test('Devuelve una lista (array) de productos', function () {
+          const productos = pm.response.json();
+          pm.expect(productos).to.be.an('array');
+      });
+
+      // 4) Si hay productos, verifica que cada uno tiene los campos esperados
+      pm.test('Cada producto tiene id, nombre y stock', function () {
+          const productos = pm.response.json();
+          productos.forEach(function (producto) {
+              pm.expect(producto).to.have.property('id');
+              pm.expect(producto).to.have.property('nombre');
+              pm.expect(producto).to.have.property('stock');
+          });
+      });

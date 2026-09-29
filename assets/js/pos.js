@@ -27,6 +27,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('buscar-btn').addEventListener('click', buscarProducto);
 
+    function escapeHtml(value) {
+        const div = document.createElement('div');
+        div.textContent = value == null ? '' : String(value);
+        return div.innerHTML;
+    }
+
+    function estaBajoMinimo(producto) {
+        const stock = Number(producto.stock);
+        const minimo = Number(producto.stock_minimo);
+        return Number.isFinite(stock) && Number.isFinite(minimo) && stock <= minimo;
+    }
+
+    function mostrarAlertaStockMinimo(producto) {
+        const alerta = document.getElementById('alerta-stock-minimo');
+        if (!alerta) {
+            return;
+        }
+
+        alerta.classList.remove('d-none');
+        alerta.innerHTML = `
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>${escapeHtml(producto.nombre)}</strong> está en o por debajo del stock mínimo
+            (${escapeHtml(producto.stock)} / mín. ${escapeHtml(producto.stock_minimo)}).
+            Puede continuar con la venta.
+        `;
+    }
+
     function buscarProducto() {
         const codigo = busquedaInput.value.trim();
         if (!codigo) {
@@ -51,14 +78,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mostrarResultadoBusqueda(producto) {
+        const bajoMinimo = estaBajoMinimo(producto);
+        if (bajoMinimo) {
+            mostrarAlertaStockMinimo(producto);
+        }
+
+        const stockHtml = bajoMinimo
+            ? `Stock: ${escapeHtml(producto.stock)} / mín. ${escapeHtml(producto.stock_minimo)}
+               <span class="badge bg-warning text-dark ms-1">Bajo mínimo</span>`
+            : `Stock: ${escapeHtml(producto.stock)}`;
+
         const card = document.createElement('div');
-        card.className = 'card mb-2 product-item animate-fade-in';
+        card.className = 'card mb-2 product-item animate-fade-in' + (bajoMinimo ? ' border-warning' : '');
         card.innerHTML = `
             <div class="card-body">
-                <h5 class="card-title">${producto.nombre}</h5>
+                <h5 class="card-title">${escapeHtml(producto.nombre)}</h5>
                 <p class="card-text">
-                    Código: ${producto.codigo}<br>
-                    Precio: $${producto.precio_venta}
+                    Código: ${escapeHtml(producto.codigo)}<br>
+                    Precio: $${escapeHtml(producto.precio_venta)}<br>
+                    ${stockHtml}
                 </p>
                 <button class="btn btn-primary btn-sm" type="button">Agregar al Carrito</button>
             </div>
@@ -68,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function agregarAlCarrito(producto) {
+        if (estaBajoMinimo(producto)) {
+            mostrarAlertaStockMinimo(producto);
+        }
+
         const itemExistente = carrito.find((item) => item.id === producto.id);
 
         if (itemExistente) {

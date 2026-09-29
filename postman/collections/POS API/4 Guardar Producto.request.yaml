@@ -1,0 +1,22 @@
+$kind: http-request
+name: '4. Guardar Producto (crear)'
+method: POST
+url: '{{baseUrl}}/api/guardar_producto.php'
+order: 4000
+body:
+  type: urlencoded
+  content:
+    - key: codigo
+      value: 'P-001'
+    - key: nombre
+      value: 'Producto de prueba'
+    - key: categoria
+      value: 'General'
+    - key: estado
+      value: 'bueno'
+    - key: stock
+      value: '10'
+    - key: precio_compra
+      value: '1000'
+    - key: precio_venta
+      value: '1500'

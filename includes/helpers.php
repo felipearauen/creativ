@@ -18,3 +18,8 @@ function formatMoney($amount): string
 {
     return number_format((float) $amount, 2, '.', ',');
 }
+
+function stockBajoMinimo($stock, $stockMinimo): bool
+{
+    return (int) $stock <= (int) $stockMinimo;
+}

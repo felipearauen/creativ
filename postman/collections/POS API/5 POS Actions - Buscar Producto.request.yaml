@@ -1,0 +1,12 @@
+$kind: http-request
+name: '5. POS Actions - Buscar Producto'
+method: POST
+url: '{{baseUrl}}/api/pos_actions.php'
+order: 5000
+body:
+  type: urlencoded
+  content:
+    - key: action
+      value: 'buscar_producto'
+    - key: codigo
+      value: 'P-001'

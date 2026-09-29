@@ -2,6 +2,14 @@
 
 Manual técnico básico del proyecto. Describe ambientes, dependencias por capa, archivos ejecutables y referencias de despliegue.
 
+**Equipo**
+
+- Juan Felipe Araque Diaz
+- María Fernanda Gómez
+- José Luis Guarnizo
+
+**Repositorio:** [https://github.com/felipearauen/creativ](https://github.com/felipearauen/creativ)
+
 ---
 
 ## 1. Descripción general
@@ -286,7 +294,7 @@ Documentar aquí las URLs oficiales del equipo:
 | Desarrollo | `http://localhost/Tienda/` | Equipo local | — |
 | Pruebas | `https://...` | _Por definir_ | — |
 | Producción | `https://...` | _Por definir_ | — |
-| Repositorio | `https://...` | _Por definir_ | — |
+| Repositorio | [github.com/felipearauen/creativ](https://github.com/felipearauen/creativ) | Equipo | — |
 | Documentación / wiki | `https://...` | _Por definir_ | — |
 
 Checklist post-despliegue:
@@ -340,11 +348,11 @@ Checklist post-despliegue:
 
 ## 14. Contacto del equipo
 
-| Rol | Nombre / contacto |
-|-----|-------------------|
-| Desarrollo | _Completar_ |
-| Base de datos | _Completar_ |
-| Despliegue | _Completar_ |
+| Integrante | Rol |
+|------------|-----|
+| Juan Felipe Araque Diaz | Desarrollo |
+| María Fernanda Gómez | Desarrollo |
+| José Luis Guarnizo | Desarrollo |
 
 ---
 
