@@ -342,14 +342,5 @@ Checklist post-despliegue:
 
 ---
 
-## 14. Contacto del equipo
-
-| Integrante | Rol |
-|------------|-----|
-| Juan Felipe Araque Diaz | Desarrollo |
-| María Fernanda Gómez | Desarrollo |
-| José Luis Guarnizo | Desarrollo |
-
----
 
 *Documento técnico del proyecto Tienda — ambiente local XAMPP y despliegue PHP/MySQL.*
