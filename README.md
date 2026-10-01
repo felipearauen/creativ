@@ -2,11 +2,7 @@
 
 Manual técnico básico del proyecto. Describe ambientes, dependencias por capa, archivos ejecutables y referencias de despliegue.
 
-**Equipo**
 
-- Juan Felipe Araque Diaz
-- María Fernanda Gómez
-- José Luis Guarnizo
 
 **Repositorio:** [https://github.com/felipearauen/creativ](https://github.com/felipearauen/creativ)
 
